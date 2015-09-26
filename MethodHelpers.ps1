@@ -1,5 +1,14 @@
 ﻿if(-not ('Argument' -as [Type])) {
+if($PSVersionTable.PSVersion -ge 5) {
 	Enum Argument {}
+}
+else {
+		Add-Type -TypeDefinition (
+		@"
+	Public Enum Argument { }
+"@
+	)  -ErrorAction SilentlyContinue
+}
 }
 
 #region Get-MethodOverloads returns list of customobject each one being a ParameterSet with its param definition (Name and type)
