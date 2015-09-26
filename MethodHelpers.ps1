@@ -1,5 +1,5 @@
 ﻿if(-not ('Argument' -as [Type])) {
-if($PSVersionTable.PSVersion -ge 5) {
+if($PSVersionTable.PSVersion.Major -ge 5) {
 	Enum Argument {}
 }
 else {
