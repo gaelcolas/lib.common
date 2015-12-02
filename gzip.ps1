@@ -86,3 +86,6 @@ function Convert-Base64GzipDataToString {
 					[System.Text.Encoding]::UTF8.GetString( [System.Convert]::FromBase64String((Convert-GzipToUTF8 -GzipData $Base64GzippedData))))
 	}
 }
+
+
+#test : Convert-Base64GzipDataToString -base64GzippedData (Convert-StringToBase64GzipData -string 'Hello World')
