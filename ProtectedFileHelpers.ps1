@@ -1,4 +1,5 @@
-﻿function New-ProtectedFile {
+﻿
+function New-ProtectedFile {
     Param(
         [Parameter(Mandatory = $true)]
         [System.IO.FileInfo]
