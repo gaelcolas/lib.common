@@ -113,12 +113,13 @@ Function Get-NicIpInIPv4Network {
     process {
         foreach ($cidrItem in $cidr)
         {
-          foreach ($ip in $localIPs.IPAddress) {
-            "--> Testing against ip $ip for CIDR $cidrItem" | Write-Verbose
-            if (Test-IPv4inCidr -ip $ip -cidr $cidrItem) {
+          foreach ($if in $localIPs) {
+            "--> Testing against ip $($if.IPAddress) for CIDR $cidrItem" | Write-Verbose
+            if (Test-IPv4inCidr -ip $if.IPAddress -cidr $cidrItem) {
                 Write-Output ([PSCustomObject]@{
-                    PSTypeName='IPinNetwork'
-                    'IPAddress' = $ip
+                    PSTypeName='NicIpInIPv4Network'
+                    'IPAddress' = $if.IPAddress
+                    'interface' = $if
                     'Network' = $_
                 })
             }
