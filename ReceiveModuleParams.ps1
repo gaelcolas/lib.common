@@ -26,7 +26,7 @@ function Receive-ModuleParameter
   }
 		
 	}
-	elseif($ModuleParams.count -eq 1) {
+	elseif($ModuleParams.count -ge 1) {
 		#Only One argument, check if it's an HashTable
 		if($ModuleParams[0] -as [hashtable]) {
 			#It's an hashtable, extract valid params for splatting to the Set-<moduleName>ModuleConfig function
@@ -50,6 +50,10 @@ function Receive-ModuleParameter
 				($configFileName = Resolve-Path $ModuleParams[0])
 			){
 				$script:configFile = $configFileName.Path
+			}
+			if($ModuleParams[1] -ne [string]::empty)
+			{
+			   add-type -path (resolve-path $$ModuleParams[0])
 			}
 		}
 	}
